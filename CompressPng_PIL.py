@@ -14,12 +14,18 @@ def reducePic(srcFile: str, dstFile):
     print('img_name:' + img_name)
     print('pth:' + srcFile)
     png_pil = Image.open(srcFile)
-    # assert png_pil.mode == 'RGBA'
+    # if png_pil.mode == 'RGBA':
+    #     return
     # png_pil.save(pth, "PNG", quality=45, optimize=True)
     # # 如果对质量要求再低些，
     # # 渐变的地方会出现失真
-    out_pil = png_pil.convert(mode="P", palette=Image.ADAPTIVE)
-    out_pil.save(srcFile, "PNG", quality=95, optimize=True)
+    try:
+        out_pil = png_pil.convert(mode="P", palette=Image.ADAPTIVE)
+        out_pil.save(srcFile, "PNG", quality=95, optimize=True)
+    except Exception as r:
+        print('未知错误 %s' % (r))
+        png_pil.save(pth, "PNG", quality=45, optimize=True)
+
 
 
 # 循环递归遍历文件夹
@@ -62,7 +68,7 @@ def main():
 
     # 需要压缩的图片扩展名
     global g_reduceFileExt
-    g_reduceFileExt = ['.png', '.jpg']
+    g_reduceFileExt = ['.png']
     # 压缩后的图片存储目录
     global g_dstPath
     g_dstPath = g_curDir
