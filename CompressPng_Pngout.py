@@ -1,31 +1,16 @@
-import getopt
-import os
-import os.path
-import sys
-from tkinter import filedialog
+#!/usr/bin/python
+# -*- coding:UTF-8 -*-
 
-from PIL import Image
+import os, os.path
+import sys, getopt
+from tkinter import filedialog
 
 
 # 压缩图片
-def reducePic(srcFile: str, dstFile):
-    img_name = srcFile.split('\\')[-1]
-    pth = srcFile.replace('/', '\\')
-    print('img_name:' + img_name)
-    print('pth:' + srcFile)
-    png_pil = Image.open(srcFile)
-    # if png_pil.mode == 'RGBA':
-    #     return
-    # png_pil.save(pth, "PNG", quality=45, optimize=True)
-    # # 如果对质量要求再低些，
-    # # 渐变的地方会出现失真
-    try:
-        out_pil = png_pil.convert(mode="I;16", palette=Image.ADAPTIVE)
-        out_pil.save(srcFile, "PNG", quality=100, optimize=True)
-    except Exception as r:
-        print('未知错误 %s' % (r))
-        png_pil.save(pth, "PNG", quality=45, optimize=True)
-
+def reducePic(srcFile, dstFile):
+    # srcFile = srcFile.replace('\\', '/')
+    cmd = g_curDir + '\\pngout.exe %s' % srcFile
+    os.system(cmd)
 
 
 # 循环递归遍历文件夹
