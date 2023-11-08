@@ -5,7 +5,7 @@
   最快、压缩率最高的压缩工具，将文件夹拖到CompressPng_Pngquant_DrawFoldHereToCompress.bat上放开即可压缩。
 
 2、OpenCv：
-  选择文件夹即可对文件夹内的图片进行压缩，路径和图片文件名中不能有中文，会导致报错。
+  使用python内的OpenCv（cv2）库，选择文件夹即可对文件夹内的图片进行压缩，路径和图片文件名中不能有中文，会导致报错。
 
 3、PIL：
   使用python内的pillow库将png转换为8bit，压缩率80%左右，但图片会有明显失真。
