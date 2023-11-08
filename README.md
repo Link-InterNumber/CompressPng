@@ -1,5 +1,6 @@
 # CompressPng
 收集的数种免费png压缩算法，利用python编写批量处理工具
+
 1、pngquant：
   最快、压缩率最高的压缩工具，将文件夹拖到CompressPng_Pngquant_DrawFoldHereToCompress.bat上放开即可压缩。
 
