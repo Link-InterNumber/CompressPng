@@ -17,11 +17,10 @@ def reducePic(srcFile: str):
     # # 如果对质量要求再低些，
     # # 渐变的地方会出现失真
     try:
-        out_pil = png_pil.convert(mode="RGB")
+        out_pil = png_pil.convert(mode="P", dither=Image.FLOYDSTEINBERG, palette=Image.ADAPTIVE, colors=256)
         # out_pil = out_pil.convert(mode="RGBA", dither=Image.FLOYDSTEINBERG, palette=Image.ADAPTIVE, colors=256)
         # out_pil.filter(ImageFilter.ModeFilter(20))
-        new_file = os.path.splitext(srcFile)[0] + '.jpg'
-        out_pil.save(new_file, quality=100, optimize=True, compress_level=0)
+        out_pil.save(srcFile, "PNG", quality=100, optimize=True, compress_level=0)
     except Exception as r:
         print('未知错误 %s' % (r))
         png_pil.save(pth, "PNG", quality=0, optimize=True, compress_level=9)
@@ -88,5 +87,5 @@ if __name__ == '__main__':
     tu = os.path.splitext(pngPath)
     if tu[1] in g_reduceFileExt:
         reducePic(pngPath)
-    print('files converted success')
+    print('files reduce success')
     # input(r'Press any key to quit.')
