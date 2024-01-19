@@ -20,8 +20,8 @@ def reducePic(srcFile: str, dstFile):
         return
     if size[0] <= 20 and size[1] <= 20:
         return
-    newWidth = math.floor(size[0] / 4) * 4
-    newheight = math.floor(size[1] / 4) * 4
+    newWidth = math.ceil(size[0] / 4) * 4
+    newheight = math.ceil(size[1] / 4) * 4
     png_pil = png_pil.resize((newWidth, newheight))
     png_pil.save(pth, "png", quality=0, optimize=True, compress_level=9)
 
